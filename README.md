@@ -173,7 +173,7 @@ yaka初始化的数据声明、函数初始化、数据监听都集中在这里�
                            "string": "string"
                        },
                        "type": "restful",
-                       "url": "http://xingyang.com/re/localdns",
+                       "url": "http://xxxx.com/re/localdns",
                        "params": {
                            "demo": "$title.value",
                            "test": "#name"
@@ -234,7 +234,7 @@ yaka初始化的数据声明、函数初始化、数据监听都集中在这里�
                         "string": "string"
                     },
                     "type": "restful",
-                    "url": "http://xingyang.com/re/localdns",
+                    "url": "http://xxxx.com/re/localdns",
                     "params": {
                         "demo": "$title.value",
                         "test": "#name"
