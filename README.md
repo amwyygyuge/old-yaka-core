@@ -49,8 +49,6 @@ export default App;
 
 ## yaka组件包地址
 [地址](https://github.com/amwyygyuge/yaka-components)
-## 文档
-[文档](http://jr.baishancloud.com:8090/pages/viewpage.action?pageId=21341051)
 
 # 更新日志
 
