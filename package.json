@@ -11,7 +11,7 @@
   ],
   "dependencies": {
     "igroot": "1.1.5",
-    "igroot-fetch": "^1.5.2",
+    "igroot-fetch": "^1.5.6",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
   },

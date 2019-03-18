@@ -76,7 +76,7 @@ var modelFactory = function modelFactory(model, yakaApis) {
 			});
 		}
 		if (type === 'get' || type === 'restful') {
-			(0, _igrootFetch2.default)(url, { headers: headers, handleHttpErrors: function handleHttpErrors() {}, mode: 'cors' }).get().then(function (res) {
+			(0, _igrootFetch2.default)(url, { timeout: 1000000 }).get().then(function (res) {
 				var code = res.code.toString();
 				if (code && code !== '0') {
 					return;
@@ -86,7 +86,7 @@ var modelFactory = function modelFactory(model, yakaApis) {
 			});
 		}
 		if (type === 'post') {
-			(0, _igrootFetch2.default)(url, { headers: headers, handleHttpErrors: function handleHttpErrors() {}, mode: 'cors' }).post(params).then(function (res) {
+			(0, _igrootFetch2.default)(url, { timeout: 1000000 }).post(params).then(function (res) {
 				var code = res.code.toString();
 				if (code && code !== '0') {
 					return;

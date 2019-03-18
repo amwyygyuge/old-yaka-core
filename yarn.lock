@@ -2016,9 +2016,10 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-igroot-fetch@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/igroot-fetch/-/igroot-fetch-1.5.2.tgz#4b50274698f6ad230ce43b6887fff1fd627475e0"
+igroot-fetch@^1.5.6:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/igroot-fetch/-/igroot-fetch-1.5.6.tgz#a4f5ca953bd93870a072b335ad65e0a55a7611c9"
+  integrity sha512-w88xT1lW5f2fnIVt54G8W038LtuCeY4DbmsxPsxGcRhu0M3dySYKEIAXyW9wH73lPLpEHsknRKPw57/zdIxqhg==
   dependencies:
     axios "^0.18.0"
     lokka "^1.7.0"
