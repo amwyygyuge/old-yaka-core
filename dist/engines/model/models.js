@@ -86,7 +86,7 @@ var modelFactory = function modelFactory(model, yakaApis) {
 			});
 		}
 		if (type === 'post') {
-			(0, _igrootFetch2.default)(url, { timeout: 1000000 }).post(params).then(function (res) {
+			(0, _igrootFetch2.default)(url, { timeout: 1000000 }).post('', params).then(function (res) {
 				var code = res.code.toString();
 				if (code && code !== '0') {
 					return;
