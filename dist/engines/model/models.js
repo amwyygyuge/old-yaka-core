@@ -4,13 +4,11 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _tool = require('./../../tool/');
-
-var _igrootFetch = require('igroot-fetch');
-
-var _igrootFetch2 = _interopRequireDefault(_igrootFetch);
 
 var _mountFunctions2 = require('./mountFunctions');
 
@@ -76,7 +74,15 @@ var modelFactory = function modelFactory(model, yakaApis) {
 			});
 		}
 		if (type === 'get' || type === 'restful') {
-			(0, _igrootFetch2.default)(url, { headers: headers, timeout: 1000000 }).get().then(function (res) {
+			fetch(url, {
+				headers: _extends({}, headers, {
+					'Content-Type': 'application/json'
+				}),
+				method: 'GET',
+				mode: 'cors'
+			}).then(function (res) {
+				return res.json();
+			}).then(function (res) {
 				var code = res.code.toString();
 				if (code && code !== '0') {
 					return;
@@ -86,7 +92,16 @@ var modelFactory = function modelFactory(model, yakaApis) {
 			});
 		}
 		if (type === 'post') {
-			(0, _igrootFetch2.default)(url, { headers: headers, timeout: 1000000 }).post('', params).then(function (res) {
+			fetch(url, {
+				headers: _extends({}, headers, {
+					'Content-Type': 'application/json'
+				}),
+				method: 'POST',
+				body: JSON.stringify(params),
+				mode: 'cors'
+			}).then(function (res) {
+				return res.json();
+			}).then(function (res) {
 				var code = res.code.toString();
 				if (code && code !== '0') {
 					return;
