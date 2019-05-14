@@ -20,6 +20,47 @@ var _stream2 = _interopRequireDefault(_stream);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var resolveParams = function resolveParams(params, auto, _ref) {
+	var formValueGettingFunction = _ref.formValueGettingFunction,
+	    getInitData = _ref.getInitData;
+	return new Promise(function (resolve, reject) {
+		var _params = {};
+		if (params) {
+			setTimeout(function () {
+				_params = JSON.parse(JSON.stringify(params));
+				Object.keys(_params).forEach(function (key) {
+					var value = _params[key] ? _params[key].toString() : null;
+
+					if ((0, _tool.isReadState)(value)) {
+						var val = (0, _tool.readState)(value, getState());
+						_params[key] = val;
+						return;
+					}
+
+					if (value && value.indexOf('#') !== -1) {
+						var _val = '';
+						if (auto === true) {
+							_val = getInitData()[value.slice(1, value.length)];
+						} else {
+							_val = formValueGettingFunction(value.slice(1, value.length));
+						}
+						if (_val && (typeof _val === 'undefined' ? 'undefined' : _typeof(_val)) === 'object' && _val.key && _val.label) {
+							_val = _val.key;
+						}
+						_params[key] = _val;
+						return;
+					}
+					_params[key] = value;
+				});
+				resolve(_params);
+			}, 500);
+		} else {
+			resolve(_params);
+		}
+	});
+};
 var modelFactory = function modelFactory(model, yakaApis) {
 	var type = model.type,
 	    params = model.params,
@@ -45,72 +86,73 @@ var modelFactory = function modelFactory(model, yakaApis) {
 			}
 		}
 	});
+	var doFetch = function () {
+		var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+			var auto = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-	return function () {
-		var auto = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+			var _params;
 
-		if (params) {
-			Object.keys(params).forEach(function (key) {
-				var value = params[key] ? params[key].toString() : null;
-				if ((0, _tool.isReadState)(value)) {
-					var val = (0, _tool.readState)(value, getState());
-					params[key] = val;
-					return;
-				}
-				if (value && value.indexOf('#') !== -1) {
-					var _val = '';
-					if (auto) {
-						_val = getInitData()[value.slice(1, value.length)];
-					} else {
-						_val = formValueGettingFunction(value.slice(1, value.length));
+			return regeneratorRuntime.wrap(function _callee$(_context) {
+				while (1) {
+					switch (_context.prev = _context.next) {
+						case 0:
+							_context.next = 2;
+							return resolveParams(params, auto, { formValueGettingFunction: formValueGettingFunction, getInitData: getInitData });
+
+						case 2:
+							_params = _context.sent;
+
+							if (type === 'get' || type === 'restful') {
+								fetch(url, {
+									headers: _extends({}, headers, {
+										'Content-Type': 'application/json'
+									}),
+									method: 'GET',
+									mode: 'cors'
+								}).then(function (res) {
+									return res.json();
+								}).then(function (res) {
+									var code = res.code.toString();
+									if (code && code !== '0') {
+										return;
+									}
+									mountFunctions && (0, _mountFunctions3.default)(mountFunctions, res, yakaApis);
+									streams && (0, _stream2.default)(streams, res, yakaApis);
+								});
+							}
+							if (type === 'post') {
+								fetch(url, {
+									headers: _extends({}, headers, {
+										'Content-Type': 'application/json'
+									}),
+									method: 'POST',
+									body: JSON.stringify(_params),
+									mode: 'cors'
+								}).then(function (res) {
+									return res.json();
+								}).then(function (res) {
+									var code = res.code.toString();
+									if (code && code !== '0') {
+										return;
+									}
+									mountFunctions && (0, _mountFunctions3.default)(mountFunctions, res, yakaApis);
+									streams && (0, _stream2.default)(streams, res, yakaApis);
+								});
+							}
+
+						case 5:
+						case 'end':
+							return _context.stop();
 					}
-					if ((typeof _val === 'undefined' ? 'undefined' : _typeof(_val)) === 'object' && _val.key && _val.label) {
-						_val = _val.key;
-					}
-					params[key] = _val;
-					return;
 				}
-				params[key] = value;
-			});
-		}
-		if (type === 'get' || type === 'restful') {
-			fetch(url, {
-				headers: _extends({}, headers, {
-					'Content-Type': 'application/json'
-				}),
-				method: 'GET',
-				mode: 'cors'
-			}).then(function (res) {
-				return res.json();
-			}).then(function (res) {
-				var code = res.code.toString();
-				if (code && code !== '0') {
-					return;
-				}
-				mountFunctions && (0, _mountFunctions3.default)(mountFunctions, res, yakaApis);
-				streams && (0, _stream2.default)(streams, res, yakaApis);
-			});
-		}
-		if (type === 'post') {
-			fetch(url, {
-				headers: _extends({}, headers, {
-					'Content-Type': 'application/json'
-				}),
-				method: 'POST',
-				body: JSON.stringify(params),
-				mode: 'cors'
-			}).then(function (res) {
-				return res.json();
-			}).then(function (res) {
-				var code = res.code.toString();
-				if (code && code !== '0') {
-					return;
-				}
-				mountFunctions && (0, _mountFunctions3.default)(mountFunctions, res, yakaApis);
-				streams && (0, _stream2.default)(streams, res, yakaApis);
-			});
-		}
-	};
+			}, _callee, undefined);
+		}));
+
+		return function doFetch() {
+			return _ref2.apply(this, arguments);
+		};
+	}();
+	return doFetch;
 };
 var models = function models(_models2, yakaApis) {
 	var _models = {};
