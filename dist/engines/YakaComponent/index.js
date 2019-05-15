@@ -10,10 +10,6 @@ var _form2 = _interopRequireDefault(_form);
 
 require('igroot/lib/form/style');
 
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
 var _yaka = require('./../yaka.class');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

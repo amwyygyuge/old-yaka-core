@@ -24,8 +24,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var resolveParams = function resolveParams(params, auto, _ref) {
 	var formValueGettingFunction = _ref.formValueGettingFunction,
-	    getInitData = _ref.getInitData;
-	return new Promise(function (resolve, reject) {
+	    getInitData = _ref.getInitData,
+	    getState = _ref.getState;
+	return new Promise(function (resolve) {
 		var _params = {};
 		if (params) {
 			setTimeout(function () {
@@ -97,7 +98,7 @@ var modelFactory = function modelFactory(model, yakaApis) {
 					switch (_context.prev = _context.next) {
 						case 0:
 							_context.next = 2;
-							return resolveParams(params, auto, { formValueGettingFunction: formValueGettingFunction, getInitData: getInitData });
+							return resolveParams(params, auto, { formValueGettingFunction: formValueGettingFunction, getInitData: getInitData, getState: getState });
 
 						case 2:
 							_params = _context.sent;

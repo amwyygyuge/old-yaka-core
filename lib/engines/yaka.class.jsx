@@ -36,6 +36,7 @@ export class Yaka extends Component {
 
 	render() {
 		return layout(this.layouts, this.yakaApis)
+
 	}
 
 	componentWillMount = () => {
@@ -51,7 +52,7 @@ export class Yaka extends Component {
 		this.yakaDidMount()
 	}
 
-	yakaDidMount = () => {}
+	yakaDidMount = () => { }
 
 	init = () => {
 		const { config, layouts, initData, state } = this
@@ -68,11 +69,11 @@ export class Yaka extends Component {
 		this.yakaWillMount()
 	}
 
-	yakaWillMount = () => {}
+	yakaWillMount = () => { }
 
 	reset = nextProps => {
 		const { config } = nextProps
-		const { models, functions, layouts, initData } = config
+		const { functions, layouts, initData } = config
 		this.config = config
 		this.layouts = config.layout
 		this.initData = config.initData || {}

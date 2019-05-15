@@ -154,8 +154,7 @@ var _initialiseProps = function _initialiseProps() {
 
 	this.reset = function (nextProps) {
 		var config = nextProps.config;
-		var models = config.models,
-		    functions = config.functions,
+		var functions = config.functions,
 		    layouts = config.layouts,
 		    initData = config.initData;
 

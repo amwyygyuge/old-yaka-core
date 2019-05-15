@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.stateWalk = exports.layout = exports.dataMap = exports.rules = exports.models = exports.functions = undefined;
 

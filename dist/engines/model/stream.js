@@ -94,22 +94,24 @@ var streamWalk = function streamWalk() {
 		var val = streamFilter(streams[key], data);
 		//表单数据流
 		if (key.indexOf('#') !== -1) {
-			if (key.slice(1, key.length).split('.').length === 1) {
-				var _stream = (0, _tool.streamTo)(key.slice(1, key.length).split('.'), {}, val);
-				formValueSettingFunction(_stream);
+			var keys = key.slice(1, key.length).split('.');
+			if (keys.length === 1) {
+				var stream = (0, _tool.streamTo)(keys, {}, val);
+				formValueSettingFunction(stream);
 			} else {
-				var formKey = key.slice(1, key.length).split('.');
+				var formKey = keys;
 				var formValues = formValueGettingFunction(formKey[0]);
 				formValues[formKey[1]] = val;
 				var obj = {};
 				obj[formKey[0]] = formValues;
-				formValueSettingFunction(stream);
+				formValueSettingFunction(obj);
 			}
 		}
+
 		//state数据流
 		if ((0, _tool.isReadState)(key)) {
-			var _stream2 = (0, _tool.streamTo)(key.slice(1, key.length).split('.'), {}, val);
-			Object.assign(state, _stream2);
+			var _stream = (0, _tool.streamTo)(key.slice(1, key.length).split('.'), {}, val);
+			Object.assign(state, _stream);
 		}
 		// 外部接口接受
 		if (key.indexOf('@') !== -1) {

@@ -11,10 +11,6 @@ var _form2 = _interopRequireDefault(_form);
 
 require('igroot/lib/form/style');
 
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
 var _yaka = require('./../yaka.class');
 
 var _model = require('./../model');
