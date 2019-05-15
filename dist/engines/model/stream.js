@@ -60,7 +60,17 @@ var streamFilter = function streamFilter(streamIn, data) {
 			if (streamIn === 'self') {
 				return data;
 			} else {
-				val = streamIn.indexOf('.') !== -1 ? (0, _tool.streamForm)(streamIn.split('.'), {}, data) : streamIn;
+				if (streamIn.includes('.')) {
+					if (streamIn.indexOf('.') === 0) {
+						var arr = streamIn.split('.');
+						arr.shift();
+						val = (0, _tool.streamForm)(arr, {}, data);
+					} else {
+						val = (0, _tool.streamForm)(streamIn.split('.'), {}, data);
+					}
+				} else {
+					val = streamIn;
+				}
 				return val;
 			}
 		default:
