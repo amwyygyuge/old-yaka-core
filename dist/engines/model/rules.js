@@ -8,6 +8,7 @@ var rulesWalk = function rulesWalk(layouts) {
 		throw Error('children must be an array!');
 	}
 	var rules = {};
+
 	layouts.forEach(function (ele) {
 		if (ele.rules) {
 			rules[ele.name] = {

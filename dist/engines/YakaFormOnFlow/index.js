@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+	value: true
 });
 exports.YakaFormOnFlow = undefined;
 
@@ -25,79 +25,79 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var IgrootConfigFormThis = void 0;
 function setStorageItem(key, value) {
-    window.localStorage && window.localStorage.setItem(key, value);
+	window.localStorage && window.localStorage.setItem(key, value);
 }
 
 var YakaFormOnFlow = exports.YakaFormOnFlow = function (_Yaka) {
-    _inherits(YakaFormOnFlow, _Yaka);
+	_inherits(YakaFormOnFlow, _Yaka);
 
-    function YakaFormOnFlow(props) {
-        _classCallCheck(this, YakaFormOnFlow);
+	function YakaFormOnFlow(props) {
+		_classCallCheck(this, YakaFormOnFlow);
 
-        var _this = _possibleConstructorReturn(this, (YakaFormOnFlow.__proto__ || Object.getPrototypeOf(YakaFormOnFlow)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (YakaFormOnFlow.__proto__ || Object.getPrototypeOf(YakaFormOnFlow)).call(this, props));
 
-        _this.rulesWalk = function () {
-            var layouts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+		_this.rulesWalk = function () {
+			var layouts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-            Object.assign(_this.rules, (0, _model.rules)(layouts));
-            _this.props.getFormData && _this.props.getFormData(_this.rules);
-        };
+			Object.assign(_this.rules, (0, _model.rules)(layouts));
+			_this.props.getFormData && _this.props.getFormData(_this.rules);
+		};
 
-        _this.yakaWillMount = function () {
-            var layouts = _this.layouts;
+		_this.yakaWillMount = function () {
+			var layouts = _this.layouts;
 
-            _this.rulesWalk(layouts);
-        };
+			_this.rulesWalk(layouts);
+		};
 
-        _this.yakaDidMount = function () {
-            _this.setDidComponentConfig();
-        };
+		_this.yakaDidMount = function () {
+			_this.setDidComponentConfig();
+		};
 
-        _this.submit = function (success, fail) {
-            var validateFields = _this.form.validateFields;
+		_this.submit = function (success, fail) {
+			var validateFields = _this.form.validateFields;
 
-            validateFields(function (err, val) {
-                if (err) {
-                    fail && fail(err);
-                } else {
-                    success && success(val);
-                }
-            });
-        };
+			validateFields(function (err, val) {
+				if (err) {
+					fail && fail(err);
+				} else {
+					success && success(val);
+				}
+			});
+		};
 
-        _this.setDidComponentConfig = function () {
-            var _this$props = _this.props,
-                form = _this$props.form,
-                onGetFormData = _this$props.onGetFormData,
-                onGetForm = _this$props.onGetForm;
-            var config = _this.props.config;
-
-
-            onGetFormData && onGetFormData(_this.rules);
-            onGetForm && onGetForm(_this, config);
-        };
-
-        IgrootConfigFormThis = _this;
-        return _this;
-    }
-
-    // 表单规则遍历
+		_this.setDidComponentConfig = function () {
+			var _this$props = _this.props,
+			    form = _this$props.form,
+			    onGetFormData = _this$props.onGetFormData,
+			    onGetForm = _this$props.onGetForm;
+			var config = _this.props.config;
 
 
-    return YakaFormOnFlow;
+			onGetFormData && onGetFormData(_this.rules);
+			onGetForm && onGetForm(_this, config);
+		};
+
+		IgrootConfigFormThis = _this;
+		return _this;
+	}
+
+	// 表单规则遍历
+
+
+	return YakaFormOnFlow;
 }(_yaka.Yaka);
 
 exports.default = _form2.default.create({
-    onValuesChange: function onValuesChange(props, values) {
-        if (IgrootConfigFormThis.props.edit === true) {
-            var editNow = IgrootConfigFormThis.props.form.getFieldsValue();
-            Object.assign(editNow, values);
-            var _editNow = JSON.stringify(editNow);
-            try {
-                setStorageItem('editformNow', _editNow);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-    }
+	onValuesChange: function onValuesChange(props, values) {
+		if (IgrootConfigFormThis.props.edit === true) {
+			var editNow = IgrootConfigFormThis.props.form.getFieldsValue();
+			Object.assign(editNow, values);
+			var _editNow = JSON.stringify(editNow);
+			try {
+				setStorageItem('editformNow', _editNow);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+	}
 })(YakaFormOnFlow);

@@ -26,7 +26,11 @@ export class Yaka extends Component {
 			getFunction: () => this.functions,
 			getForm: () => this.form,
 			getComponent: () => {
-				return { components: this.components, layoutComponents: this.layoutComponents, extend: this.extend }
+				return {
+					components: this.components,
+					layoutComponents: this.layoutComponents,
+					extend: this.extend
+				}
 			},
 			getInitData: () => this.initData,
 			getProps: () => this.props,
@@ -36,7 +40,6 @@ export class Yaka extends Component {
 
 	render() {
 		return layout(this.layouts, this.yakaApis)
-
 	}
 
 	componentWillMount = () => {
@@ -52,34 +55,34 @@ export class Yaka extends Component {
 		this.yakaDidMount()
 	}
 
-	yakaDidMount = () => { }
+	yakaDidMount = () => {}
 
 	init = () => {
 		const { config, layouts, initData, state } = this
-		const { models, functions } = config
+		const { models: configModels, functions: configFunctions } = config
 		//函数遍历
-		this.functionsWalk(functions)
+		this.functionsWalk(configFunctions)
 		//函数绑定
 		//state遍历
 		this.stateWalk(layouts, initData)
 		//数据映射遍历
 		//model遍历
-		this.modelWalk(models)
+		this.modelWalk(configModels)
 		this.dataMapWalk(state)
 		this.yakaWillMount()
 	}
 
-	yakaWillMount = () => { }
+	yakaWillMount = () => {}
 
 	reset = nextProps => {
 		const { config } = nextProps
-		const { functions, layouts, initData } = config
+		const { functions: configFunctions, layouts, initData } = config
 		this.config = config
 		this.layouts = config.layout
 		this.initData = config.initData || {}
 		Object.assign(this.state, config.global)
 		//函数遍历
-		this.functionsWalk(functions)
+		this.functionsWalk(configFunctions)
 		//state遍历
 		this.stateWalk(layouts, initData)
 		//载入初始表单数据

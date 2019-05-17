@@ -15,6 +15,7 @@ var mountFunctions = function mountFunctions() {
 	    formValueGettingFunction = yakaApis.formValueGettingFunction,
 	    getProps = yakaApis.getProps;
 
+
 	Object.keys(mountFunctions).forEach(function (key) {
 		key = key.toString();
 		var functions = getMountFunctions()[key];

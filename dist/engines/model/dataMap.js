@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _tool = require('./../../tool/');
 
-var dataMap = function dataMap() {
+var resolveDataMap = function resolveDataMap() {
 	var dataMap = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	var yakaApis = arguments[1];
 
@@ -17,13 +17,12 @@ var dataMap = function dataMap() {
 		key = key.toString();
 		_dataMap[key] = function () {
 			var state = getState();
-			var _dataMap$key = dataMap[key],
-			    value = _dataMap$key.value,
-			    map = _dataMap$key.map;
+			var value = dataMap[key].value;
+			var map = dataMap.key.map;
 
 			value = (0, _tool.readState)(value, state);
-			var m = map.find(function (m) {
-				return m.value === value;
+			var m = map.find(function (item) {
+				return item.value === value;
 			});
 			if (m) {
 				var _key = m.data;
@@ -39,4 +38,4 @@ var dataMap = function dataMap() {
 	});
 	return _dataMap;
 };
-exports.default = dataMap;
+exports.default = resolveDataMap;

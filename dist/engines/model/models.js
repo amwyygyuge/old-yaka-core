@@ -87,6 +87,7 @@ var modelFactory = function modelFactory(model, yakaApis) {
 			}
 		}
 	});
+
 	var doFetch = function () {
 		var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
 			var auto = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
@@ -98,7 +99,11 @@ var modelFactory = function modelFactory(model, yakaApis) {
 					switch (_context.prev = _context.next) {
 						case 0:
 							_context.next = 2;
-							return resolveParams(params, auto, { formValueGettingFunction: formValueGettingFunction, getInitData: getInitData, getState: getState });
+							return resolveParams(params, auto, {
+								formValueGettingFunction: formValueGettingFunction,
+								getInitData: getInitData,
+								getState: getState
+							});
 
 						case 2:
 							_params = _context.sent;
@@ -155,10 +160,10 @@ var modelFactory = function modelFactory(model, yakaApis) {
 	}();
 	return doFetch;
 };
-var models = function models(_models2, yakaApis) {
+var resolveModels = function resolveModels(models, yakaApis) {
 	var _models = {};
-	Object.keys(_models2 || {}).forEach(function (key) {
-		var model = _models2[key];
+	Object.keys(models || {}).forEach(function (key) {
+		var model = models[key];
 		_models[key] = modelFactory(model, yakaApis);
 		if (model.action === 'auto') {
 			_models[key](true);
@@ -166,4 +171,4 @@ var models = function models(_models2, yakaApis) {
 	});
 	return _models;
 };
-exports.default = models;
+exports.default = resolveModels;

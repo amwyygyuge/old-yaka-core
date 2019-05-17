@@ -1,73 +1,67 @@
 module.exports = {
+  bail: true, //遇上 test feature, 则Stop running test, 默认值是false
 
-    bail: true, //遇上 test feature, 则Stop running test, 默认值是false
+  cacheDirectory: "./node_modules/.cache", //测试缓存数据的存储位置
 
-    cacheDirectory: './node_modules/.cache', //测试缓存数据的存储位置
+  testEnvironment: "jsdom", //default brower-like enviroment, 如果你搭建了一个node service node-like enviroment
 
-    testEnvironment: 'jsdom', //default brower-like enviroment, 如果你搭建了一个node service node-like enviroment
+  coverageThreshold: {
+    //测试覆盖率, 阈值不满足，就返回测试失败
 
-    coverageThreshold: { //测试覆盖率, 阈值不满足，就返回测试失败
+    global: {
+      branches: 90,
 
-        global: {
+      functions: 90,
 
-            branches: 90,
+      lines: 90,
 
-            functions: 90,
+      statements: 90
+    }
+  },
 
-            lines: 90,
+  coveragePathIgnorePatterns: [
+    //该路径下的测试，忽略在测试覆盖率上
 
-            statements: 90,
+    "build",
 
-        },
+    "<rootDir>/src/shared/libs/url/"
+  ],
 
-    },
+  // testRegex: 'test/.*\\.jsx?$', //要测试的文件目录及后缀
 
-    coveragePathIgnorePatterns: [ //该路径下的测试，忽略在测试覆盖率上
+  testPathIgnorePatterns: [
+    //忽略该路径的文件测试
 
-        'build',
+    "<rootDir>/node_modules/",
 
-        '<rootDir>/src/shared/libs/url/',
+    "<rootDir>/build/",
 
-    ],
+    "<rootDir>/scripts/",
 
-    // testRegex: 'test/.*\\.jsx?$', //要测试的文件目录及后缀
+    "<rootDir>/api/",
 
-    testPathIgnorePatterns: [ //忽略该路径的文件测试
+    "<rootDir>/test/setup.js",
 
-        '<rootDir>/node_modules/',
+    "__mocks__"
+  ],
 
-        '<rootDir>/build/',
+  moduleFileExtensions: ["", "json", "js", "jsx", "less"], //测试模块中用到的文件的后缀名配置
 
-        '<rootDir>/scripts/',
+  modulePaths: ["<rootDir>/src", "<rootDir>"],
+  setupFiles: ["<rootDir>/test/setup.js"], //给每个测试文件添加额外的配置
+  moduleNameMapper: {
+    //与测试无关的资源文件同意mock 掉，这样在import 的时候就不会真的引入这些文件
 
-        '<rootDir>/api/',
+    "^import?": "<rootDir>/test/jest/jestImportMock.js",
 
-        '<rootDir>/test/setup.js',
+    "\\.(css|less|gif|jpg|jpeg|png)$": "<rootDir>/test/jest/css-transform.js"
+  },
 
-        '__mocks__',
+  transformIgnorePatterns: [
+    //测试过程不改变满足配置的文件
 
-    ],
+    "<rootDir>/node_modules/(?!(react-aaui|tempest\\.js)/)",
 
-    moduleFileExtensions: ['', 'json', 'js', 'jsx', 'less'], //测试模块中用到的文件的后缀名配置
-
-    modulePaths: ['<rootDir>/src', '<rootDir>'],
-    setupFiles: ['<rootDir>/test/setup.js'], //给每个测试文件添加额外的配置
-    moduleNameMapper: {  //与测试无关的资源文件同意mock 掉，这样在import 的时候就不会真的引入这些文件
-
-        '^import?': '<rootDir>/test/jest/jestImportMock.js',
-
-        '\\.(css|less|gif|jpg|jpeg|png)$': '<rootDir>/test/jest/css-transform.js',
-
-    },
-
-
-    transformIgnorePatterns: [ //测试过程不改变满足配置的文件
-
-        '<rootDir>/node_modules/(?!(react-aaui|tempest\\.js)/)',
-
-        'babel-runtime',
-
-    ],
-
-}
-
+    "babel-runtime"
+  ]
+};

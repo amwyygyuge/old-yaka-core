@@ -39,6 +39,7 @@ var streamFilter = function streamFilter(streamIn, data) {
 						}
 					}
 				}
+
 				// 处理别名
 				if (streamIn.alias) {
 					Object.keys(streamIn.alias).forEach(function (aliasKey) {

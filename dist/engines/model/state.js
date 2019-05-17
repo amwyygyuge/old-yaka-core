@@ -16,6 +16,7 @@ var getLogicMapComponent = function getLogicMapComponent(ele, initData) {
 	}
 	return logicState;
 };
+
 var stateWalk = function stateWalk(layouts, initData) {
 	if (!Array.isArray(layouts)) {
 		throw Error('children must be an array!');
@@ -30,11 +31,11 @@ var stateWalk = function stateWalk(layouts, initData) {
 
 		if (state) {
 			var eleState = {};
-			var component_state = {};
+			var componentState = {};
 			Object.keys(state).forEach(function (key) {
-				component_state[key] = state[key];
+				componentState[key] = state[key];
 			});
-			eleState[name] = component_state;
+			eleState[name] = componentState;
 			Object.assign(_state, eleState);
 		}
 

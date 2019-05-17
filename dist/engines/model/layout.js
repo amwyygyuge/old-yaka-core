@@ -19,16 +19,12 @@ var bindingText = function bindingText(ele, getState, getProps) {
 			// #
 			var text = (0, _tool.readState)(ele.text, getState());
 			children.push(text);
+		} else if (ele.text.indexOf('@') !== -1) {
+			var name = ele.text.slice(1, ele.text.length);
+			var props = getProps();
+			children.push(props[name]);
 		} else {
-			// @
-			if (ele.text.indexOf('@') !== -1) {
-				var name = ele.text.slice(1, ele.text.length);
-				var props = getProps();
-				children.push(props[name]);
-			} else {
-				// 普通数据
-				children.push(ele.text);
-			}
+			children.push(ele.text);
 		}
 	}
 	return children;

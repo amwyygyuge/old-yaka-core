@@ -9,7 +9,7 @@ export class YakaForm extends Yaka {
 				{layout(this.layouts, this.yakaApis)}
 				{this.props.onSubmit ? (
 					<div style={{ textAlign: 'center', margin: '15px 0' }}>
-						<Button type='primary' onClick={this.onSubmit}>
+						<Button type="primary" onClick={this.onSubmit}>
 							提交
 						</Button>
 					</div>
@@ -17,6 +17,7 @@ export class YakaForm extends Yaka {
 			</div>
 		)
 	}
+
 	yakaDidMount = () => {
 		this.setDidComponentConfig()
 	}
@@ -32,6 +33,7 @@ export class YakaForm extends Yaka {
 			}
 		})
 	}
+
 	setDidComponentConfig = () => {
 		const { onGetForm } = this.props
 		onGetForm && onGetForm(this.form)
