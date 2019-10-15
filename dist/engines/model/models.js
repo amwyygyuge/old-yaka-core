@@ -88,11 +88,23 @@ var modelFactory = function modelFactory(model, yakaApis) {
 		}
 	});
 
+	var changeURl = function changeURl(url, params) {
+		var str = '';
+		Object.keys(params).forEach(function (item, index) {
+			if (index === 0) {
+				str += '?' + item + '=' + params[item];
+			} else {
+				str += '&' + item + '=' + params[item];
+			}
+		});
+		return '' + url + str;
+	};
+
 	var doFetch = function () {
 		var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
 			var auto = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-			var _params;
+			var _params, newURL;
 
 			return regeneratorRuntime.wrap(function _callee$(_context) {
 				while (1) {
@@ -108,8 +120,12 @@ var modelFactory = function modelFactory(model, yakaApis) {
 						case 2:
 							_params = _context.sent;
 
+
 							if (type === 'get' || type === 'restful') {
-								fetch(url, {
+								//支持url传递参数
+								newURL = changeURl(url, _params);
+
+								fetch(newURL, {
 									headers: _extends({}, headers, {
 										'Content-Type': 'application/json'
 									}),

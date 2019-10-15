@@ -499,3 +499,88 @@ yaka配置平台现在按组件细粒度拆分出个个组件的配置，方便�
 yarn add yaka-component
 ```
 
+## 目录结构
+```
+├── README.md
+├── demo.json
+├── lib  
+│   ├── engines
+│   │   ├── YakaComponent yaka组件
+│   │   │   └── index.js
+│   │   ├── YakaForm  yaka表单组件
+│   │   │   └── index.js
+│   │   ├── YakaFormOnFlow  yaka 昆仑表单组件
+│   │   │   └── index.js
+│   │   ├── index.js
+│   │   ├── model   yaka功能模块
+│   │   │   ├── stream.js   数据流模块
+│   │   │   ├── dataMap.js  数据编编辑模块
+│   │   │   ├── functions.js  配置函数处理模块
+│   │   │   ├── index.js
+│   │   │   ├── layout.js  渲染解析模块
+│   │   │   ├── models.js http请求模块
+│   │   │   ├── mountFunctions.js 弃用
+│   │   │   ├── rules.js 弃用
+│   │   │   ├── state.js  配置数据采集模块
+│   │   │   └── stream.js 数据流模块 
+│   │   └── yaka.class.js
+│   ├── extend   特殊组件的处理
+│   │   ├── editTable.js
+│   │   ├── editor.js
+│   │   └── index.js
+│   ├── index.js 入口文件
+│   └── tool  工具函数
+│       └── index.js
+├── jest.config.js
+├── dist 构建后的文件
+│   ├── engines
+│   │   ├── YakaComponent
+│   │   │   └── index.jsx
+│   │   ├── YakaForm
+│   │   │   └── index.jsx
+│   │   ├── YakaFormOnFlow
+│   │   │   └── index.jsx
+│   │   ├── index.js
+│   │   ├── model
+│   │   │   ├── dataMap.js
+│   │   │   ├── functions.js
+│   │   │   ├── index.js
+│   │   │   ├── layout.js
+│   │   │   ├── models.js
+│   │   │   ├── mountFunctions.js
+│   │   │   ├── rules.js
+│   │   │   ├── state.js
+│   │   │   └── stream.js
+│   │   └── yaka.class.jsx
+│   ├── extend
+│   │   ├── editTable.jsx
+│   │   ├── editor.jsx
+│   │   └── index.js
+│   ├── index.js
+│   └── tool
+│       └── index.js
+├── package.json
+├── test   单元测试
+│   ├── __snapshots__
+│   ├── demos
+│   │   ├── datamap.js
+│   │   ├── index.js
+│   │   ├── layout.js
+│   │   └── logic.js
+│   ├── error_case
+│   ├── flow.test.js
+│   ├── jest
+│   │   └── css-transform.js
+│   ├── retun.test.js
+│   ├── setup.js
+│   ├── tool
+│   │   └── index.js
+│   ├── tool.test.js
+│   └── yaka.test.js
+├── yarn-error.log
+└── yarn.lock
+```
+## 技术栈
+js + react + igroot
+## 发布方式
+yarn publish
